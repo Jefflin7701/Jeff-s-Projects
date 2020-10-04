@@ -6,6 +6,7 @@ class TicTacToe {
 		char X = 'X';
 		char O = 'O';
 		char matrix[3][3] = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+		bool placed = false;
 	void printBoard() {
 		for (int i = 0; i < 3; ++i) {
 			for (int j = 0; j < 3; ++j) {
@@ -601,7 +602,7 @@ class TicTacToe {
 					++turnsPassed;
 					break;
 				}
-				else if (humanDoubles() == "third column double3") {
+				else if (humanDoubles() == "third column double2") {
 					matrix[0][2] = O;
 					++turnsPassed;
 					break;
@@ -655,10 +656,12 @@ class TicTacToe {
 			else {
 				if (matrix[0][0] == '1') {
 					matrix[0][0] = O;
+					++turnsPassed;
 					break;
 				}
 				else {
 					matrix[1][0] = O;
+					++turnsPassed;
 					break;
 				}
 			}
@@ -734,7 +737,7 @@ class TicTacToe {
 					++turnsPassed;
 					break;
 				}
-				else if (botDoubles() == "third column double3") {
+				else if (botDoubles() == "third column double2") {
 					matrix[0][2] = O;
 					++turnsPassed;
 					break;
@@ -856,7 +859,7 @@ class TicTacToe {
 					++turnsPassed;
 					break;
 				}
-				else if (humanDoubles() == "third column double3") {
+				else if (humanDoubles() == "third column double2") {
 					matrix[0][2] = O;
 					++turnsPassed;
 					break;
@@ -979,7 +982,7 @@ class TicTacToe {
 					++turnsPassed;
 					break;
 				}
-				else if (botDoubles() == "third column double3") {
+				else if (botDoubles() == "third column double2") {
 					matrix[0][2] = O;
 					++turnsPassed;
 					break;
@@ -1101,8 +1104,8 @@ class TicTacToe {
 					++turnsPassed;
 					break;
 				}
-				else if (humanDoubles() == "third column double3") {
-					matrix[1][2] = O;
+				else if (humanDoubles() == "third column double2") {
+					matrix[0][2] = O;
 					++turnsPassed;
 					break;
 				}
@@ -1158,10 +1161,13 @@ class TicTacToe {
 						if ((matrix[i][j] != X) && (matrix[i][j] != O)) {
 							matrix[i][j] = O;
 							++turnsPassed;
+							placed = true;
 							break;
 						}
 					}
-					break;
+					if (placed) {
+						break;
+					}
 				}
 				break;
 			}
@@ -1416,10 +1422,13 @@ class TicTacToe {
 						if ((matrix[i][j] != X) && (matrix[i][j] != O)) {
 							matrix[i][j] = O;
 							++turnsPassed;
+							placed = true;
 							break;
 						}
 					}
-					break;
+					if (placed) {
+						break;
+					}
 				}
 				break;
 			}
@@ -1617,7 +1626,7 @@ class TicTacToe {
 					++turnsPassed;
 					break;
 				}
-				else if (humanDoubles() == "third column double3") {
+				else if (humanDoubles() == "third column double2") {
 					matrix[0][2] = O;
 					++turnsPassed;
 					break;
@@ -1674,8 +1683,12 @@ class TicTacToe {
 						if ((matrix[i][j] != X) && (matrix[i][j] != O)) {
 							matrix[i][j] = O;
 							++turnsPassed;
+							placed = true;
 							break;
 						}
+					}
+					if (placed) {
+						break;
 					}
 				}
 				break;
@@ -1689,6 +1702,7 @@ class TicTacToe {
 						break;
 					}
 				}
+				break;
 			}
 			break;
 		}
@@ -1778,6 +1792,11 @@ int main() {
 	string answer;
 	cout << "Do you want to go first? (yes or no): ";
 	cin >> answer;
+	while (answer != "yes" && answer != "no") {
+		cout << "Invalid Choice" << endl;
+		cout << "Do you want to go first? (yes or no): ";
+		cin >> answer;
+	}
 	int turnsPassed = 0;
 	cout << "Tic Tac Toe Board: " << endl;
 	bot.printBoard();
@@ -1794,6 +1813,7 @@ int main() {
 			cout << "Bot's turn:" << endl;
 			bot.botInput(turnsPassed);
 			bot.printBoard();
+			bot.placed = false;
 			if (bot.botWin() == true) {
 				turnsPassed = 10;
 				cout << "The bot wins. Better luck next time!" << endl;
@@ -1816,10 +1836,11 @@ int main() {
 		}
 	}
 	else {
-		while (turnsPassed <= 8) {
+		while (turnsPassed < 8) {
 			cout << "Bot's turn:" << endl;
 			bot.botInput(turnsPassed);
 			bot.printBoard();
+			bot.placed = false;
 			if (bot.botWin() == true) {
 				turnsPassed = 10;
 				cout << "The bot wins. Better luck next time!" << endl;
