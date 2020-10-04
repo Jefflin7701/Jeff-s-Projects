@@ -675,7 +675,7 @@ class TicTacToe {
 					break;
 				}
 				else if (botDoubles() == "third row double1") {
-					matrix[2][2] == O;
+					matrix[2][2] = O;
 					++turnsPassed;
 					break;
 				}
@@ -797,7 +797,7 @@ class TicTacToe {
 					break;
 				}
 				else if (humanDoubles() == "third row double1") {
-					matrix[2][2] == O;
+					matrix[2][2] = O;
 					++turnsPassed;
 					break;
 				}
@@ -920,7 +920,7 @@ class TicTacToe {
 					break;
 				}
 				else if (botDoubles() == "third row double1") {
-					matrix[2][2] == O;
+					matrix[2][2] = O;
 					++turnsPassed;
 					break;
 				}
@@ -1042,7 +1042,7 @@ class TicTacToe {
 					break;
 				}
 				else if (humanDoubles() == "third row double1") {
-					matrix[2][2] == O;
+					matrix[2][2] = O;
 					++turnsPassed;
 					break;
 				}
@@ -1178,7 +1178,7 @@ class TicTacToe {
 					break;
 				}
 				else if (botDoubles() == "third row double1") {
-					matrix[2][2] == O;
+					matrix[2][2] = O;
 					++turnsPassed;
 					break;
 				}
@@ -1300,7 +1300,7 @@ class TicTacToe {
 					break;
 				}
 				else if (humanDoubles() == "third row double1") {
-					matrix[2][2] == O;
+					matrix[2][2] = O;
 					++turnsPassed;
 					break;
 				}
@@ -1436,7 +1436,7 @@ class TicTacToe {
 					break;
 				}
 				else if (botDoubles() == "third row double1") {
-					matrix[2][2] == O;
+					matrix[2][2] = O;
 					++turnsPassed;
 					break;
 				}
@@ -1558,7 +1558,7 @@ class TicTacToe {
 					break;
 				}
 				else if (humanDoubles() == "third row double1") {
-					matrix[2][2] == O;
+					matrix[2][2] = O;
 					++turnsPassed;
 					break;
 				}
@@ -1669,17 +1669,16 @@ class TicTacToe {
 				}
 			}
 			else {
-			for (int i = 0; i < 3; ++i) {
-				for (int j = 0; j < 3; ++j) {
-					if ((matrix[i][j] != X) && (matrix[i][j] != O)) {
-						matrix[i][j] = O;
-						++turnsPassed;
-						break;
+				for (int i = 0; i < 3; ++i) {
+					for (int j = 0; j < 3; ++j) {
+						if ((matrix[i][j] != X) && (matrix[i][j] != O)) {
+							matrix[i][j] = O;
+							++turnsPassed;
+							break;
+						}
 					}
 				}
 				break;
-			}
-			break;
 			}
 		case 8:
 			for (int i = 0; i < 3; ++i) {
@@ -1687,6 +1686,7 @@ class TicTacToe {
 					if ((matrix[i][j] != X) && (matrix[i][j] != O)) {
 						matrix[i][j] = O;
 						++turnsPassed;
+						break;
 					}
 				}
 			}
